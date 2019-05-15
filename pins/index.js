@@ -2,6 +2,7 @@ const uuid = require("uuid/v4");
 
 const addPin = (user, pin) => {
   if (!user) {
+    console.log('Unauthorized User')
     throw new Error("Unauthorized");
   }
   const pin_id = uuid();
