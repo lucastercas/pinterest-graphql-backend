@@ -58,9 +58,10 @@ const verify = long_token => {
 const authorize = async (database, long_token) => {
   console.log("Authorizing User - Auth Index");
   const { id } = verify(long_token);
-  return database("users")
+  const user = await database("users")
     .select()
     .where({ id });
+  return user
 };
 
 const createUser = email => {

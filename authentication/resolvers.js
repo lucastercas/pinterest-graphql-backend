@@ -17,7 +17,7 @@ const resolvers = {
     },
     me: async (_, __, { long_token }) => {
       console.log('\n==========')
-      console.log("Querying Me, token: ", long_token);
+      console.log("Querying Me");
       const [user] = await authorize(database, long_token);
       console.log("User: ", user);
       return user;
