@@ -2,9 +2,9 @@
   "name": "insta-graphql",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
-  "script": {
-    "start": "nodemon main.js"
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
