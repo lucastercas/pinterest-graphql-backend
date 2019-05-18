@@ -8,6 +8,22 @@ const resolvers = {
       console.log('\n==========')
       console.log('Returning Pins')
       return database("pins").select()
+    },
+    pinById: async (_, {id}) => {
+      console.log('\n==========')
+      console.log('Returning Pin: ', id)
+      const pin = await database('pins').select('*').where('id', id)
+      console.log('Pin: ', pin)
+      return pin[0]
+        /*
+      return {
+        id: 'test-id',
+        title: 'test-title',
+        link: 'test-link',
+        image: 'test-image',
+        user_id: 'test-user-id'
+      }
+      */
     }
   },
   Mutation: {
@@ -25,4 +41,3 @@ const resolvers = {
 };
 
 module.exports = resolvers;
-
