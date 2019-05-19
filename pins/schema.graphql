@@ -19,6 +19,7 @@ type Query {
 
 type Mutation {
   addPin(pin: PinInput!): Pin
+  postComment(comment: String!, pin: String!): Boolean
 }
 
 type Subscription { pinAdded: Pin }

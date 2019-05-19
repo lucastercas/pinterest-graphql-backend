@@ -15,15 +15,6 @@ const resolvers = {
       const pin = await database('pins').select('*').where('id', id)
       console.log('Pin: ', pin)
       return pin[0]
-        /*
-      return {
-        id: 'test-id',
-        title: 'test-title',
-        link: 'test-link',
-        image: 'test-image',
-        user_id: 'test-user-id'
-      }
-      */
     }
   },
   Mutation: {
@@ -31,13 +22,21 @@ const resolvers = {
       console.log('\n==========')
       console.log("Adding a Pin");
       console.log('Pin: ', pin)
+      // Check if user has permission, and return it:
       const [user] = await authorize(database, long_token);
+      // Create the pin:
       const { user: updatedUser, pin: createdPin } = await addPin(user, pin);
-      await database("pins").insert(createdPin);
       console.log('Created Pin: ', createdPin)
+      await database("pins").insert(createdPin);
       return createdPin;
+    },
+    postComment: async(_, {comment, pin}, header) => {
+      console.log('\n==========')
+      console.log(`Posting comment ${comment} on pin ${pin}`)
+      console.log('User: ', header)
+      return true;
     }
-  }
+  },
 };
 
 module.exports = resolvers;
