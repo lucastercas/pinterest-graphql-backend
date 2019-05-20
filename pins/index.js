@@ -13,7 +13,6 @@ const addPin = (user, pin) => {
     },
     pin: {
       id: pin_id,
-      link: pin.link,
       image: pin.image,
       title: pin.title,
       user_id: user.id

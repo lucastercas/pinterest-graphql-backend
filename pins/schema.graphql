@@ -1,14 +1,12 @@
 type Pin {
   id: String!
   title: String!
-  link: String!
   image: String!
   user_id: String! 
 }
 
 input PinInput {
   title: String!
-  link: String!
   image: String!
 }
 
