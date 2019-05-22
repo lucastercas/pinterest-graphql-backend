@@ -23,12 +23,10 @@ exports.up = function(knex, Promise) {
     table.string('pin_id')
       .references('id')
       .inTable('pins')
-    table.primary(['user_id', 'pin_id'])
+    table.string('comment_id')
+    table.primary(['user_id', 'pin_id', 'comment_id'])
     table.string('content')
-    
   })
-
-
   
 };
 
