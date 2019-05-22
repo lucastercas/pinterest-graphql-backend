@@ -1,4 +1,4 @@
-const { addPin } = require("./index");
+const { addPin, addComment} = require("./index");
 const { verify, authorize } = require("../authentication");
 const database = require("../database");
 
@@ -37,16 +37,12 @@ const resolvers = {
       await database("pins").insert(createdPin);
       return createdPin;
     },
-    postComment: async(_, {comment, pin_id, user_id}, {long_token}) => {
+    postComment: async(_, {content, pin_id, user_id}, {long_token}) => {
       console.log('\n==========')
       console.log('Posting comment')
-      const comment = {
-        user_id: user_id,
-        pin_id: pin_id,
-        comment_id: uuid(),
-        content: comment
-      }
-      await database('comment').insert(comment)
+      const comment = addComment(user_id, pin_id, content)
+      console.log(comment)
+      await database('comments').insert(comment)
       return true;
     }
   },

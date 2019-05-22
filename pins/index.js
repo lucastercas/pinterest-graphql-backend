@@ -25,11 +25,11 @@ const addComment = (user_id, pin_id, content) => {
     user_id: user_id,
     pin_id: pin_id,
     comment_id: uuid(),
-    content: comment
+    content: content
   }
   return comment
 };
 
 module.exports = {
-  addPin
+  addPin, addComment
 };
