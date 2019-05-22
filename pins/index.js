@@ -20,6 +20,16 @@ const addPin = (user, pin) => {
   })
 }
 
+const addComment = (user_id, pin_id, content) => {
+  const comment = {
+    user_id: user_id,
+    pin_id: pin_id,
+    comment_id: uuid(),
+    content: comment
+  }
+  return comment
+};
+
 module.exports = {
   addPin
 };

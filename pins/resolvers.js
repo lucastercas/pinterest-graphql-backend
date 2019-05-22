@@ -15,6 +15,13 @@ const resolvers = {
       const pin = await database('pins').select('*').where('id', id)
       console.log('Pin: ', pin)
       return pin[0]
+    },
+    commentsByPin: async(_, {pin_id}) => {
+      console.log('\n==========')
+      console.log('Returning Comments')
+      const comments = await database('comments').select('*')
+        .where('pin_id', pin_id)
+      return comments
     }
   },
   Mutation: {
@@ -30,10 +37,16 @@ const resolvers = {
       await database("pins").insert(createdPin);
       return createdPin;
     },
-    postComment: async(_, {comment, pin}, header) => {
+    postComment: async(_, {comment, pin_id, user_id}, {long_token}) => {
       console.log('\n==========')
-      console.log(`Posting comment ${comment} on pin ${pin}`)
-      console.log('User: ', header)
+      console.log('Posting comment')
+      const comment = {
+        user_id: user_id,
+        pin_id: pin_id,
+        comment_id: uuid(),
+        content: comment
+      }
+      await database('comment').insert(comment)
       return true;
     }
   },

@@ -5,6 +5,13 @@ type Pin {
   user_id: String! 
 }
 
+type Comment {
+  user_id: String!
+  pin_id: String!
+  comment_id: String!
+  content: String!
+}
+
 input PinInput {
   title: String!
   image: String!
@@ -12,12 +19,13 @@ input PinInput {
 
 type Query {
   pins: [Pin]
+  commentsByPin(pin_id: String!): [Comment]
   pinById(id: String!): Pin
 }
 
 type Mutation {
   addPin(pin: PinInput!): Pin
-  postComment(comment: String!, pin: String!): Boolean
+  postComment(comment: String!, pin_id: String!, user_id: String!): Boolean
 }
 
 type Subscription { pinAdded: Pin }
