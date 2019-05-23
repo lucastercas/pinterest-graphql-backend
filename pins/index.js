@@ -20,21 +20,25 @@ const addPin = (user, pin) => {
   })
 }
 
-const addComment = (user_id, pin_id, content) => {
+const addComment = (user, pin_id, content) => {
   if(!user) {
     console.error("Unauthorized User")
     throw new Erro("Unauthorized")
   }
-  const comment_id = uuid()
+  const com_id = uuid()
+  console.log('Comment Id: ', com_id)
   return Promise.resolve({
+    user: {
+      id: user.id,
+      email: user.email
+    },
     comment: {
-      user_id: user_id,
+      user_id: user.id,
       pin_id: pin_id,
-      comment_id: comment_id,
+      comment_id: com_id,
       content: content
     }
   })
-  return comment
 };
 
 module.exports = {

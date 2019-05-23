@@ -41,10 +41,12 @@ const resolvers = {
       console.log('\n==========')
       console.log('Posting comment')
       const [user] = await authorize(database, user_id)
-      const comment = addComment(user_id, pin_id, content)
-      console.log(comment)
-      await database('comments').insert(comment)
-      return comment
+
+      const {comment: createdComment} = await addComment(user, pin_id, content)
+      console.log('Comment: ', createdComment)
+
+      await database('comments').insert(createdComment)
+      return createdComment
     }
   },
 };
