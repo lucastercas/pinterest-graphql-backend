@@ -1,6 +1,6 @@
 const { addPin, addComment} = require("./index");
 const { verify, authorize } = require("../authentication");
-const database = require("../database");
+const database = require("../../database/database");
 
 const resolvers = {
   Query: {

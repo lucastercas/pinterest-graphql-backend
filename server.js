@@ -1,7 +1,7 @@
 const { ApolloServer } = require('apollo-server');
 require('dotenv').config()
 
-const schema = require('./schema');
+const schema = require('./graphql/schema');
 
 const server = new ApolloServer({
   schema,

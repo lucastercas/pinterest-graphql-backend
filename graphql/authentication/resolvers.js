@@ -6,7 +6,7 @@ const {
   createUser
 } = require("./index");
 
-const database = require("../database");
+const database = require("../../database/database");
 
 const resolvers = {
   Query: {

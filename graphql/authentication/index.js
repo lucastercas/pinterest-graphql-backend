@@ -1,7 +1,7 @@
 const uuid = require("uuid/v4");
 const jsonwebtoken = require("jsonwebtoken");
 
-const { sendMail } = require("../email");
+const { sendMail } = require("../../email/email");
 
 const createShortLivedToken = ({ email, id }) => {
   console.log("Creating Short Lived Token");
