@@ -40,10 +40,11 @@ const resolvers = {
     postComment: async(_, {content, pin_id, user_id}, {long_token}) => {
       console.log('\n==========')
       console.log('Posting comment')
+      const [user] = await authorize(database, user_id)
       const comment = addComment(user_id, pin_id, content)
       console.log(comment)
       await database('comments').insert(comment)
-      return true;
+      return comment
     }
   },
 };

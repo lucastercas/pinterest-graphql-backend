@@ -21,12 +21,19 @@ const addPin = (user, pin) => {
 }
 
 const addComment = (user_id, pin_id, content) => {
-  const comment = {
-    user_id: user_id,
-    pin_id: pin_id,
-    comment_id: uuid(),
-    content: content
+  if(!user) {
+    console.error("Unauthorized User")
+    throw new Erro("Unauthorized")
   }
+  const comment_id = uuid()
+  return Promise.resolve({
+    comment: {
+      user_id: user_id,
+      pin_id: pin_id,
+      comment_id: comment_id,
+      content: content
+    }
+  })
   return comment
 };
 
