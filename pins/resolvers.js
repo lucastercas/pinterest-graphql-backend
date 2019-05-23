@@ -13,7 +13,7 @@ const resolvers = {
       console.log('\n==========')
       console.log('Returning Pin: ', id)
       const pin = await database('pins').select('*').where('id', id)
-      console.log('Pin: ', pin)
+      console.log('Pin: ', pin[0])
       return pin[0]
     },
     commentsByPin: async(_, {pin_id}) => {
@@ -21,6 +21,7 @@ const resolvers = {
       console.log('Returning Comments')
       const comments = await database('comments').select('*')
         .where('pin_id', pin_id)
+      console.log('Comments: ', comments)
       return comments
     }
   },
